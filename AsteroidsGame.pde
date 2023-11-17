@@ -22,6 +22,8 @@ public void draw(){
       ship.turn(-5);
     if(key == 'd' || key == 'D')
       ship.turn(5);
-
+    if(key == 'h' || key == 'H'){
+      ship.hyperspace();
+    }
   }
 }
