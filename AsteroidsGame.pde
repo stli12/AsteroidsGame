@@ -2,7 +2,7 @@ Star[] stars = new Star[300];
 Spaceship ship = new Spaceship();
 
 public void setup() {
-  size(1200,1000);
+  size(1000,700);
   for(int i = 0; i < stars.length; i++)
      stars[i] = new Star();
 }
