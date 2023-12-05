@@ -8,16 +8,20 @@ public void setup() {
   for(int i = 0; i < stars.length; i++)
      stars[i] = new Star();
      
-  for(int j =0; j<list.size(); j++)
-    list.set(j, new asteroid());
+  for(int j =0; j<10; j++)
+    list.add(j, new asteroid());
 }
 
 public void draw(){
   background(0);
    for(int j = 0; j < list.size(); j++){
-    ball.show();
-    ball.move();
+    list.get(j).show();
+    list.get(j).move();
+     if(dist((float)list.get(j).myCenterX, (float) list.get(j).myCenterY, (float)ship.myCenterX, (float)ship.myCenterY) < 20) {
+ list.remove(j);
    }
+
+   
   for(int i = 0; i < stars.length; i++)
     stars[i].show();
   ship.show();
@@ -36,4 +40,4 @@ public void draw(){
       ship.hyperspace();
     }
   }
-}
+   }}
