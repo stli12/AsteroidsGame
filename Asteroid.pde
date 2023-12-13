@@ -3,10 +3,10 @@ class asteroid extends Floater{
   public asteroid(){
     myTurnSpeed = (double)(Math.random()*5);
     myColor = (255);
-    myCenterX = (double)(Math.random()*500);
-    myCenterY = (double)(Math.random()*350);
-    myPointDirection = (double)(Math.random()*1000);
-    myXspeed = myYspeed = 2;
+    myCenterX = (Math.random()*1000);
+    myCenterY = (Math.random()*700);
+    myPointDirection = (Math.random()*5);
+    myXspeed = myYspeed = 3;
     
     corners = 6;
     xCorners = new int [corners];
