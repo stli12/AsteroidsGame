@@ -1,43 +1,60 @@
 Star[] stars = new Star[300];
 Spaceship ship = new Spaceship();
-asteroid ball = new asteroid();
-ArrayList <asteroid> list = new ArrayList <asteroid>();
-
+ArrayList <asteroid> rock = new ArrayList <asteroid>();
+ArrayList <bullet> pew = new ArrayList <bullet>();
 public void setup() {
   size(1000,700);
   for(int i = 0; i < stars.length; i++)
      stars[i] = new Star();
      
   for(int j =0; j<10; j++)
-    list.add(j, new asteroid());
-}
+    rock.add(j, new asteroid());
+    
+} 
 
 public void draw(){
   background(0);
-   for(int j = 0; j < list.size(); j++){
-    list.get(j).show();
-    list.get(j).move();
-     if(dist((float)list.get(j).myCenterX, (float) list.get(j).myCenterY, (float)ship.myCenterX, (float)ship.myCenterY) < 20) {
- list.remove(j);
+     ship.show();
+  ship.move();
+   
+   for(int j = 0; j < rock.size(); j++){
+    rock.get(j).show();
+    rock.get(j).move();
+    float d = (dist((float)rock.get(j).myCenterX, (float) rock.get(j).myCenterY, (float)ship.myCenterX, (float)ship.myCenterY)) ;
+     if(d < 20) 
+ rock.remove(j);
    }
-
+ for(int i =0; i< rock.size(); i ++){ 
+  for(int k = 0; k<pew.size(); k++){
+   pew.get(k).move();
+   pew.get(k).show();
+   float t = (dist ( (float)pew.get(k).myCenterX, (float)pew.get(k).myCenterY, (float)rock.get(i).myCenterX, (float) rock.get(i).myCenterY));
+   if (t < 20){   
+ rock.remove(rock.get(i));
+ pew.remove(pew.get(k));
+break;
+   }
+  }
+  }
    
   for(int i = 0; i < stars.length; i++)
     stars[i].show();
-  ship.show();
-  ship.move();
+  
 
-  if(keyPressed){
+   }
+public void keyPressed(){
     if(key == 'w' || key == 'W')
-      ship.accelerate(0.1);
+      ship.accelerate(0.2);
     if(key == 's' || key == 's')
-      ship.accelerate(-0.1);
+      ship.accelerate(-0.2);
     if(key == 'a' || key == 'A')
-      ship.turn(-5);
+      ship.turn(-10);
     if(key == 'd' || key == 'D')
-      ship.turn(5);
-    if(key == 'h' || key == 'H'){
-      ship.hyperspace();
-    }
-  }
-   }}
+      ship.turn(10);
+    if(key == 'h' || key == 'H')
+      ship.hyperspace();  
+    if(key == ' ')
+      pew.add(new bullet(ship));
+}
+   
+ 
